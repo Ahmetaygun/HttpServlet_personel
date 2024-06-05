@@ -45,4 +45,6 @@ Bu işlem, PersonnelServlet.java üzerinden gerçekleştiriliyor.
 PersonnelServlet.java sınıfı, HttpServlet sınıfını extend ederek oluşturuldu.
 doPost metodu personel ekleme işlemi için, doGet metodu ise personel listeleme işlemi için kullanıldı.
 Gerekli veri işlemleri bu sınıf içinde gerçekleştirildi.
+
+
 Bu proje sayesinde temel bir personel kayıt uygulaması oluşturmuş oldum. Hem Servletlerin hem de temel web teknolojilerinin kullanımını pekiştirdim.
