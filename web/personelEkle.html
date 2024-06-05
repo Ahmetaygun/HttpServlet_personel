@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personel Ekle</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: buttonface;
+        }
+        .container {
+            width: 120%;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background-color: beige;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .nav-pills .nav-link, .btn-primary, .btn-secondary {
+            margin: 5px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Gölge ekliyoruz */
+            transition: transform 0.2s, box-shadow 0.2s; /* Animasyon ekliyoruz */
+        }
+        .nav-link:hover, .btn-primary:hover, .btn-secondary:hover {
+            transform: translateY(-5px); /* Butonun yukarı çıkmasını sağlıyoruz */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Gölgeyi büyütüyoruz */
+        }
+        .nav-item .nav-link[href="index.html"] {
+            background-color: #007bff;
+        }
+        .nav-item .nav-link[href="personelEkle.html"] {
+            background-color: #28a745;
+        }
+        .nav-item .nav-link[href="personelListele.html"] {
+            background-color: #ffc107;
+        }
+        .nav-pills {
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .form-control {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Giriş alanlarına gölge ekliyoruz */
+            transition: box-shadow 0.2s; /* Animasyon ekliyoruz */
+        }
+        .form-control:focus {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Odaklanıldığında gölgeyi büyütüyoruz */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a class="nav-link" href="index.html">Anasayfa</a></li>
+            <li class="nav-item"><a class="nav-link" href="personelEkle.html">Personel Ekle</a></li>
+            <li class="nav-item"><a class="nav-link" href="personelListele.html">Personel Listele</a></li>
+        </ul>
+        <h1>Personel Ekle</h1>
+        <form id="personelForm" class="mb-3">
+            <div class="form-group">
+                <label for="ad">Ad:</label>
+                <input type="text" class="form-control" id="ad" name="ad" required>
+            </div>
+            <div class="form-group">
+                <label for="soyad">Soyad:</label>
+                <input type="text" class="form-control" id="soyad" name="soyad" required>
+            </div>
+            <div class="form-group">
+                <label for="sicilNumarasi">Sicil Numarası:</label>
+                <input type="text" class="form-control" id="sicilNumarasi" name="sicilNumarasi">
+            </div>
+            <div class="form-group">
+                <label for="departman">Departman:</label>
+                <select multiple class="form-control" id="departman" name="departman">
+                    <option value="YAZILIM MÜHENDİSİ">YAZILIM MÜHENDİSİ</option>
+                    <option value="SATIŞ TEMSİLCİSİ">SATIŞ TEMSİLCİSİ</option>
+                    <option value="İNSAN KAYNAKLARI">İNSAN KAYNAKLARI</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="telefon">Telefon:</label>
+                <input type="text" class="form-control" id="telefon" name="telefon">
+            </div>
+            <div class="form-group">
+                <label for="iseGirisTarihi">İşe Giriş Tarihi:</label>
+                <input type="date" class="form-control" id="iseGirisTarihi" name="iseGirisTarihi" required>
+            </div>
+            <div class="form-group">
+                <label for="maas">Maaş Tutarı:</label>
+                <input type="number" class="form-control" id="maas" name="maas" required>
+            </div>
+            <div class="form-group">
+                <label for="aktif">Aktif:</label>
+                <select class="form-control" id="aktif" name="aktif">
+                    <option value="true">Evet</option>
+                    <option value="false">Hayır</option>
+                </select>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">Ekle</button>
+                <a href="personelListele.html" class="btn btn-secondary">Personel Listele</a>
+            </div>
+        </form>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#personelForm").on("submit", function(event) {
+                event.preventDefault();
+                $.post("personel", $(this).serialize(), function(data) {
+                    $("#message").text(data);
+                    $("#personelForm")[0].reset();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

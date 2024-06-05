@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personel Listele</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: buttonface;
+        }
+        .container {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow-x: auto;
+            background-color: beige;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .nav-pills {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .nav-item .nav-link {
+            margin: 5px;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Gölge ekliyoruz */
+            transition: transform 0.2s, box-shadow 0.2s; /* Animasyon ekliyoruz */
+        }
+        .nav-link:hover {
+            transform: translateY(-5px); /* Butonun yukarı çıkmasını sağlıyoruz */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Gölgeyi büyütüyoruz */
+        }
+        .nav-item .nav-link[href="index.html"] {
+            background-color: #007bff;
+        }
+        .nav-item .nav-link[href="personelEkle.html"] {
+            background-color: #28a745;
+        }
+        .nav-item .nav-link[href="personelListele.html"] {
+            background-color: #ffc107;
+        }
+        table {
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 4px;
+            overflow: hidden;
+            table-layout: auto;
+            border-collapse: separate;
+            border-spacing: 0 10px; /* Hücreler arasında boşluk ekliyoruz */
+        }
+        thead {
+            background-color: #007bff;
+            color: white;
+        }
+        th, td {
+            text-align: center;
+            padding: 15px; /* Padding'i artırıyoruz */
+        }
+        th:nth-child(6), td:nth-child(6) {
+            width: 190px; /* İşe Giriş Tarihi sütununun genişliğini artırıyoruz */
+        }
+        tbody tr {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        tbody tr:hover {
+            transform: translateY(-5px); /* Satırın yukarı çıkmasını sağlıyoruz */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Gölgeyi büyütüyoruz */
+        }
+        tbody tr:nth-child(odd) {
+            background-color: #e9ecef;
+        }
+        @media (max-width: 768px) {
+            th, td {
+                font-size: 12px;
+                padding: 10px; /* Mobil cihazlar için padding'i küçültüyoruz */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a class="nav-link" href="index.html">Anasayfa</a></li>
+            <li class="nav-item"><a class="nav-link" href="personelEkle.html">Personel Ekle</a></li>
+            <li class="nav-item"><a class="nav-link" href="personelListele.html">Personel Listele</a></li>
+        </ul>
+        <h1>Personel Listele</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>Sicil Numarası</th>
+                    <th>Departman</th>
+                    <th>Telefon</th>
+                    <th>İşe Giriş Tarihi</th>
+                    <th>Maaş</th>
+                    <th>Aktif</th>
+                </tr>
+            </thead>
+            <tbody id="personelTableBody">
+            </tbody>
+        </table>
+        <p id="summary"></p>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $.get("personel", function(data) {
+                let totalMaas = 0;
+                let personelCount = data.length;
+                data.forEach(function(personel) {
+                    totalMaas += personel.maas;
+                    $("#personelTableBody").append(`
+                        <tr>
+                            <td>${personel.ad}</td>
+                            <td>${personel.soyad}</td>
+                            <td>${personel.sicilNumarasi}</td>
+                            <td>${personel.departman.join(", ")}</td>
+                            <td>${personel.telefon}</td>
+                            <td>${personel.iseGirisTarihi}</td>
+                            <td>${personel.maas}</td>
+                            <td>${personel.aktif ? "Evet" : "Hayır"}</td>
+                        </tr>
+                    `);
+                });
+                $("#summary").text(`Toplam Personel Sayısı: ${personelCount}, Toplam Maaş Tutarı: ${totalMaas}`);
+            });
+        });
+    </script>
+</body>
+</html>

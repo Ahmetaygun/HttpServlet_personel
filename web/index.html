@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personel Kayıt Uygulaması</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: buttonface;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: beige;
+        }
+        .nav-pills {
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .nav-link {
+            margin: 5px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Gölge ekliyoruz */
+            transition: transform 0.2s, box-shadow 0.2s; /* Animasyon ekliyoruz */
+        }
+        .nav-link:hover {
+            transform: translateY(-5px); /* Butonun yukarı çıkmasını sağlıyoruz */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Gölgeyi büyütüyoruz */
+        }
+        .anasayfa-btn {
+            background-color: #007bff;
+        }
+        .personel-ekle-btn {
+            background-color: #28a745;
+        }
+        .personel-listele-btn {
+            background-color: #ffc107;
+        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HOŞ GELDİNİZ</h1>
+        <p>Şirketimizin personel kayıt uygulamasına hoş geldiniz. Bu uygulama, personel bilgilerinin kayıt altına alınması, güncellenmesi ve listelenmesi işlemlerini kolaylaştırmak amacıyla geliştirilmiştir.</p>
+        <p>Lütfen aşağıdaki butonları kullanarak istediğiniz işlemi seçiniz:</p>
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link btn anasayfa-btn" href="index.html">Anasayfa</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn personel-ekle-btn" href="personelEkle.html">Personel Ekle</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link btn personel-listele-btn" href="personelListele.html">Personel Listele</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
